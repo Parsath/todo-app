@@ -1,6 +1,7 @@
 import Head from "next/head";
 import {
   createTask,
+  fetchStats,
   fetchTasks,
   removeTask,
   updateTask,
@@ -11,7 +12,8 @@ import TaskInput from "../src/components/task-input";
 
 export async function getServerSideProps() {
   const tasks = await fetchTasks();
-  return { props: { tasks } };
+  const stats = await fetchStats();
+  return { props: { tasks, stats } };
 }
 
 export default function Home(props) {
@@ -20,6 +22,8 @@ export default function Home(props) {
     fetchTasks,
     { initialData: props.tasks }
   );
+
+  const stats = useQuery("stats", fetchStats, { initialStats: props.stats });
 
   return (
     <div>
@@ -32,7 +36,6 @@ export default function Home(props) {
         {isError && <p>There has been an error</p>}
         {isLoading && <p>Loading tasks</p>}
         {isSuccess &&
-          data &&
           data.map((task) => (
             <TaskCard
               task={task}

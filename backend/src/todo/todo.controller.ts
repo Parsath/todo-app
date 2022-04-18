@@ -32,6 +32,16 @@ export class TodoController {
     return this.todoService.findOne(+id);
   }
 
+  @Get('stats')
+  stats() {
+    return this.todoService.countStats();
+  }
+
+  @Get('stats/done')
+  doneStats() {
+    return this.todoService.countDone();
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateTodoDto: UpdateTodoDto) {
     return this.todoService.update(+id, updateTodoDto);

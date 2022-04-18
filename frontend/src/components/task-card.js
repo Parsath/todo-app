@@ -27,7 +27,7 @@ export default function TaskCard({ task }) {
     updateMutation.mutate({ id: task.id, newStatus: event.target.value });
   };
 
-  const handleDelete = (event) => {
+  const handleDelete = () => {
     console.log(status);
     console.log(task);
     removeMutation.mutate(task.id);

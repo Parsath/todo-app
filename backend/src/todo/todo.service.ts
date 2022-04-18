@@ -25,6 +25,14 @@ export class TodoService {
     return await this.repository.findOne(id);
   }
 
+  public async countStats() {
+    return await this.repository.countStats();
+  }
+
+  public async countDone() {
+    return await this.repository.count({ status: TodoStatus.DONE });
+  }
+
   public async update(id: number, updateTodoDto: UpdateTodoDto) {
     return await this.repository.update(id, updateTodoDto);
   }

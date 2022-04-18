@@ -3,6 +3,11 @@ const fetchTasks = async () => {
   return res.json();
 };
 
+const fetchStats = async () => {
+  const res = await fetch("http://localhost:3000/todo/stats");
+  return res.json();
+};
+
 const createTask = async (task) => {
   const res = await fetch(`http://localhost:3000/todo`, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -46,4 +51,4 @@ const updateTask = async (data) => {
   return res.json();
 };
 
-export { createTask, fetchTasks, removeTask, updateTask };
+export { createTask, fetchTasks, fetchStats, removeTask, updateTask };
