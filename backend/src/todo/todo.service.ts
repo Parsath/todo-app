@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateTodoDto } from './dto/create-todo.dto';
+import { UpdateStatusDto } from './dto/update-status.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 import { TodoStatus } from './entities/todo.entity';
 import { TodoRepository } from './todo.repository';
@@ -28,8 +29,8 @@ export class TodoService {
     return await this.repository.update(id, updateTodoDto);
   }
 
-  public async updateStatus(id: number, status: TodoStatus) {
-    return await this.repository.update(id, { status });
+  public async updateStatus(id: number, updateStatusDto: UpdateStatusDto) {
+    return await this.repository.update(id, updateStatusDto);
   }
 
   public async remove(id: number) {

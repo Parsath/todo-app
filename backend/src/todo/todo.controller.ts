@@ -11,6 +11,7 @@ import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 import { TodoStatus } from './entities/todo.entity';
+import { UpdateStatusDto } from './dto/update-status.dto';
 
 @Controller('todo')
 export class TodoController {
@@ -36,9 +37,12 @@ export class TodoController {
     return this.todoService.update(+id, updateTodoDto);
   }
 
-  @Patch(':id/status')
-  updateStatus(@Param('id') id: string, @Body() status: TodoStatus) {
-    return this.todoService.updateStatus(+id, status);
+  @Patch('status/:id')
+  updateStatus(
+    @Param('id') id: string,
+    @Body() updateStatusDto: UpdateStatusDto,
+  ) {
+    return this.todoService.updateStatus(+id, updateStatusDto);
   }
 
   @Delete(':id')

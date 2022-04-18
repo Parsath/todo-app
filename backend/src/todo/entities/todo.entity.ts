@@ -14,9 +14,6 @@ export class Todo {
   @Column()
   title: string;
 
-  @Column()
-  description: string;
-
   @Column({
     type: 'enum',
     enum: TodoStatus,
